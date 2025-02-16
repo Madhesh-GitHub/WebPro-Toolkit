@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebPro Toolkit</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: Arial, sans-serif;
+      background: white;
+      overflow-x: hidden;
+    }
+
+    /* Enhanced navbar with hamburger */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 20px 40px;
+      background: white;
+      border-bottom: 1px solid #e0e0e0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-weight: bold;
+      color: black;
+      font-size: 24px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links span {
+      color: black;
+      position: relative;
+      cursor: pointer;
+      padding: 5px 0;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links span::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #4da8f7;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links span:hover::after {
+      width: 100%;
+    }
+
+    .nav-links span:last-child {
+      color: #4da8f7;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      cursor: pointer;
+      padding: 10px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 25px;
+      height: 2px;
+      background: black;
+      transition: all 0.3s ease;
+    }
+
+    /* Enhanced Hero Section */
+    .hero {
+      margin-top: 80px;
+      /* padding-left: 100px; */
+      min-height: calc(100vh - 80px);
+      padding: 0 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .hero-text {
+      padding-left: 100px;
+      flex: 1;
+      max-width: 600px;
+    }
+
+    .hero h1 {
+      font-size: 64px;
+      color: black;
+      margin-bottom: 40px;
+      line-height: 1.2;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 20px;
+    }
+
+    .btn-primary {
+      padding: 15px 30px;
+      background: #4da8f7;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(77, 168, 247, 0.2);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(77, 168, 247, 0.3);
+    }
+
+    .btn-secondary {
+      padding: 15px 30px;
+      background: #f5f5f5;
+      color: black;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .hero-image {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-image img {
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+    }
+
+    /* Grid Section with more spacing */
+    .section {
+      padding: 120px 80px;  /* Increased top padding */
+    }
+
+    .grid-container {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    .grid-item-wrapper {
+      text-align: center;
+    }
+
+    .grid-item {
+      border: 1px solid #e0e0e0;
+      padding: 30px;
+      border-radius: 12px;
+      width: 280px;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      transition: all 0.3s ease;
+    }
+
+    .grid-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .grid-item img {
+      max-width: 200px;
+      max-height: 160px;
+    }
+
+    .grid-caption {
+      margin-top: 15px;
+      color: black;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .bottom-section {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid #e0e0e0;
+      color: #666;
+      font-size: 14px;
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: white;
+        padding: 20px;
+        border-bottom: 1px solid #e0e0e0;
+        gap: 15px;
+        text-align: center;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hero {
+        flex-direction: column;
+        padding: 40px 20px;
+        text-align: center;
+        min-height: auto;
+      }
+
+      .hero-text {
+        max-width: 100%;
+      }
+
+      .hero h1 {
+        font-size: 40px;
+      }
+
+      .buttons {
+        justify-content: center;
+      }
+
+      .hero-image img {
+        width: 100%;
+        max-width: 400px;
+        margin-top: 40px;
+      }
+
+      .section {
+        padding: 60px 20px;
+      }
+
+      .grid-container, .bottom-section {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .grid-item {
+        width: 100%;
+        max-width: 320px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo">WebPro ToolKit</div>
+    <div class="nav-links">
+      <span>Text</span>
+      <span>Text</span>
+      <span>Text</span>
+      <span>Login</span>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  
+  <div class="hero">
+    <div class="hero-text">
+      <h1>Your Favourite<br>Workspace</h1>
+      <div class="buttons">
+        <button class="btn-primary">Get WebPro Toolkit</button>
+        <button class="btn-secondary">Login</button>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="Hero.gif" alt="Workspace Illustration">
+    </div>
+  </div>
+  
+  <div class="section">
+    <div class="grid-container">
+      <div class="grid-item-wrapper">
+        <div class="grid-item">
+          <img src="productivity.png" alt="Productivity Tools">
+        </div>
+        <p class="grid-caption">Productivity Tools</p>
+      </div>
+      <div class="grid-item-wrapper">
+        <div class="grid-item">
+          <img src="team_collab.png" alt="Team Collab">
+        </div>
+        <p class="grid-caption">Team Collab</p>
+      </div>
+      <div class="grid-item-wrapper">
+        <div class="grid-item">
+          <img src="filemanagement.png" alt="File Management">
+        </div>
+        <p class="grid-caption">File Management</p>
+      </div>
+    </div>
+    <div class="bottom-section">
+      <div class="grid-item-wrapper">
+        <div class="grid-item">
+          <img src="editor.png" alt="Editors">
+        </div>
+        <p class="grid-caption">Editors</p>
+      </div>
+      <div class="grid-item-wrapper">
+        <div class="grid-item">
+          <img src="healthcare.png" alt="Health Analyzer">
+        </div>
+        <p class="grid-caption">Health Analyzer</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    All rights reserved - WebPro Toolkit
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const navLinks = document.querySelector('.nav-links');
+      navLinks.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>

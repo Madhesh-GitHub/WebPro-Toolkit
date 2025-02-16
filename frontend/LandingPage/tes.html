@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebPro Toolkit</title>
+  <style>
+    /* Universal Box-Sizing */
+    * {
+      box-sizing: border-box;
+    }
+    html, body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      scroll-snap-type: y mandatory;
+      overflow-y: scroll;
+    }
+    /* Fixed Navbar with left logo and right nav-links */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 15px 30px;
+      font-weight: bold;
+      border-bottom: 3px solid gray;
+      background: white;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+    .logo {
+      flex: 1;
+      text-align: left;
+    }
+    .nav-links {
+      flex: 1;
+      text-align: right;
+      display: flex;
+      justify-content: flex-end;
+      gap: 20px;
+    }
+    /* Each page fills the remaining viewport height (subtracting navbar height) */
+    .page {
+      margin-top: 70px; /* Adjust if navbar height changes */
+      min-height: calc(100vh - 70px);
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+    }
+    /* Hero Section (First Page) Styles */
+    .hero {
+      flex: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 80px;
+    }
+    .hero-text {
+      max-width: 50%;
+      text-align: left;
+    }
+    .hero h1 {
+      font-size: 40px;
+      font-weight: bold;
+    }
+    .buttons {
+      margin-top: 20px;
+    }
+    .buttons button {
+      margin-right: 10px;
+      padding: 12px 20px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 16px;
+      border-radius: 8px;
+    }
+    .btn-primary {
+      background-color: #4da8f7;
+      color: white;
+    }
+    .btn-secondary {
+      background-color: #d3d3d3;
+      color: black;
+    }
+    /* Increased hero image size */
+    .hero-image img {
+      width: 800px;
+      height: auto;
+    }
+    /* Section (Second Page) Styles */
+    .section {
+      flex: 1;
+      padding: 80px;
+    }
+    .grid-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+    }
+    .grid-item-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .grid-item {
+      text-align: center;
+      border: 1px solid black;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease-in-out;
+      /* Changed background from white to black */
+      background-color: black;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      height: 220px;
+    }
+    .grid-item:hover {
+      transform: scale(1.1);
+    }
+    /* Increased grid images size */
+    .grid-item img {
+      max-width: 200px;
+      max-height: 200px;
+    }
+    .grid-caption {
+      margin-top: 10px;
+      font-size: 16px;
+    }
+    .bottom-section {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+    footer {
+      text-align: center;
+      padding: 10px;
+      border-top: 3px solid gray;
+      font-weight: bold;
+    }
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        padding: 15px 10px;
+      }
+      .logo, .nav-links {
+        width: 100%;
+        text-align: center;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 10px;
+      }
+      .hero {
+        flex-direction: column;
+        padding: 40px 20px;
+      }
+      .hero-text {
+        max-width: 100%;
+        text-align: center;
+      }
+      .hero h1 {
+        font-size: 32px;
+      }
+      .hero-image img {
+        width: 100%;
+        max-width: 400px;
+        margin-top: 20px;
+      }
+      .section {
+        padding: 40px 20px;
+      }
+      .grid-container {
+        flex-direction: column;
+        gap: 20px;
+      }
+      .grid-item {
+        width: 90%;
+        height: auto;
+      }
+      .bottom-section {
+        flex-direction: column;
+        gap: 20px;
+      }
+      .page {
+        margin-top: 70px;
+        min-height: calc(100vh - 70px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo">WebPro ToolKit</div>
+    <div class="nav-links">
+      <span>Text</span>
+      <span>Text</span>
+      <span>Text</span>
+      <span>Login</span>
+    </div>
+  </div>
+  
+  <!-- First Page: Hero Section -->
+  <div class="page">
+    <div class="hero">
+      <div class="hero-text">
+        <h1>Your Favourite Workspace</h1>
+        <div class="buttons">
+          <button class="btn-primary">Get WebPro Toolkit</button>
+          <button class="btn-secondary">Login</button>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="Hero.gif" alt="Workspace Illustration">
+      </div>
+    </div>
+  </div>
+  
+  <!-- Second Page: Grid Section -->
+  <div class="page">
+    <div class="section">
+      <div class="grid-container">
+        <div class="grid-item-wrapper">
+          <div class="grid-item">
+            <img src="productivity.png" alt="Productivity Tools">
+          </div>
+          <p class="grid-caption">Productivity Tools</p>
+        </div>
+        <div class="grid-item-wrapper">
+          <div class="grid-item">
+            <img src="team_collab.png" alt="Team Collab">
+          </div>
+          <p class="grid-caption">Team Collab</p>
+        </div>
+        <div class="grid-item-wrapper">
+          <div class="grid-item">
+            <img src="filemanagement.png" alt="File Management">
+          </div>
+          <p class="grid-caption">File Management</p>
+        </div>
+      </div>
+      <div class="bottom-section">
+        <div class="grid-item-wrapper">
+          <div class="grid-item">
+            <img src="editor.png" alt="Editors">
+          </div>
+          <p class="grid-caption">Editors</p>
+        </div>
+        <div class="grid-item-wrapper">
+          <div class="grid-item">
+            <img src="healthcare.png" alt="Health Analyzer">
+          </div>
+          <p class="grid-caption">Health Analyzer</p>
+        </div>
+      </div>
+    </div>
+    <footer>
+      All rights reserved - WebPro Toolkit
+    </footer>
+  </div>
+</body>
+</html>
